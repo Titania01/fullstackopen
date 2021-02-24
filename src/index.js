@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import Note from './components/Note'
 const notes = [
   {
     id: 1,
@@ -22,21 +22,16 @@ const notes = [
   }
 ]
 
-const App = (props) => {
-  const { notes } = props
-  const result = notes.map(note => note.id)
-  console.log(result)
+const App = ({ notes }) => {
+
 
   return (
     <div>
       <h1>Notes</h1>
       <ul>
-        {/* <li>{notes[0].content}</li>
-        <li>{notes[1].content}</li>
-        <li>{notes[2].content}</li> */}
         {notes.map(note => 
-        <li key={note.id}>
-          {note.content}</li> )}
+        <Note key={note.id} note={note} /> 
+        )}
       </ul>
     </div>
   )
