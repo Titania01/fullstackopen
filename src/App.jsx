@@ -5,7 +5,7 @@ const App = (props) => {
   const [notes, setNotes] = useState(props.notes)
 
   const addNote = (event) => {
-    event.preventdefault()
+    event.preventDefault()
     console.log('button clicked', event.target)
   }
 
