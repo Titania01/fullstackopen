@@ -15,6 +15,7 @@ const App = () => {
         console.log('promise fufilled')
         setNotes(response.data)
       })
+    }
   
     useEffect(hook, [])
 
@@ -29,8 +30,14 @@ const App = () => {
       id: notes.length +1,
     }
 
-    setNotes(notes.concat(noteObject))
-    setNewNote('')
+    axios
+      .post('http://localhost:3001/notes')
+      .then(response => {
+        console.log(response)
+        setNotes(notes.concat(noteObject))
+        setNewNote('')
+      })
+
   }
 
   const handleNoteChange = (event) => {
