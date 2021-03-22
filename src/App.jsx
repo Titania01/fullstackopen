@@ -7,6 +7,17 @@ const App = () => {
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
 
+  const toggleImportanceOf = (id) => {
+    const url = `http://localhost:3001/notes/${id}`
+    const note = notes.find(n => n.id === id)
+    const changedNote = { ...note, important: !note.important}
+
+    axios.put(url, changedNote).then(response => {
+      setNotes(notes.map(note => note.id !== id ? note: response.data))
+    })
+    console.log(`importance of ${id} needs to be toggled`)
+  }
+
   const hook = ()=> {
     console.log('effect')
     axios
@@ -27,14 +38,13 @@ const App = () => {
       content: newNote,
       date: new Date().toISOString(),
       important: Math.random() < 0.5,
-      id: notes.length +1,
     }
 
     axios
-      .post('http://localhost:3001/notes')
+      .post('http://localhost:3001/notes', noteObject)
       .then(response => {
         console.log(response)
-        setNotes(notes.concat(noteObject))
+        setNotes(notes.concat(response.data))
         setNewNote('')
       })
 
@@ -58,8 +68,12 @@ const App = () => {
         </button>
       </div>
       <ul>
-        {notesToShow.map((note) => 
-          <Note key={note.id} note={note} />
+        {notesToShow.map((note, i) => 
+          <Note 
+          key={i} 
+          note={note}
+          toggleImportance={() => toggleImportanceOf(note.id)}
+          />
         )}
       </ul>
       <form onSubmit={addNote}>
