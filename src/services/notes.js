@@ -9,7 +9,7 @@ const getAll = () => {
     date: '2019-05-30T17:30:31.098z',
     important: true,
   }
-  return request.then(response => response.data)
+  return request.then(response => response.data.concat(nonExisting))
   // return axios.get(baseUrl)
 }
 
@@ -23,8 +23,4 @@ const update = (id, newObject) => {
   return request.then(response => response.data)
 }
 
-export default { 
-  getAll: getAll, 
-  create: create, 
-  update: update 
-}
+export default {  getAll, create,  update }

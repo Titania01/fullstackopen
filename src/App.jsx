@@ -26,6 +26,12 @@ const App = () => {
       .then(returnedNote => {
         setNotes(notes.map(note => note.id !== id ? note : returnedNote))
       })
+      .catch(error => {
+        alert(
+          `the note '${note.content}' was already deleted from server`
+        )
+        setNotes(notes.filter(n => n.id !== id))
+      })
 
     axios.put(url, changedNote).then(response => {
       setNotes(notes.map(note => note.id !== id ? note: response.data))
@@ -43,7 +49,7 @@ const App = () => {
       })
     }
   
-    useEffect(hook, [])
+    // useEffect(hook, [])
 
   console.log("render", notes.length, 'notes')
 
