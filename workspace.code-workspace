@@ -1,0 +1,17 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "../../fullstackopen-ex/part2/phonebook"
+	},
+	{
+		"path": "../../../codevillage-projects/zimplemail-client"
+	}
+],
+  "settings": {
+    "git.ignoreLimitWarning": true,
+    "liveServer.settings.multiRootWorkspaceName": "Loops"
+  }
+}
